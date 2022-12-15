@@ -8,7 +8,9 @@ jobs:
     - uses: actions/checkout@v3
     - name: build and tag image
       #run: docker build . --file Dockerfile --tag m1lk/test-action-pccp:v1
-      run: cd ../ && docker build -t m1lk/test-action-pccp:v1 -f Dockerfile
+      run: |
+        cd ../
+        docker build -t m1lk/test-action-pccp:v1 -f Dockerfile
     - name: push to dockerhub
       run: docker login -u ${{secrets.DOCKERHUB_USERNAME}} -p ${{secrets.DOCKERHUB_SECRET}} && docker push m1lk/test-action-pccp:v1
   
